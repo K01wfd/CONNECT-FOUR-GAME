@@ -1,0 +1,19 @@
+.mainMenu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 40px;
+  border: 3px solid var(--Black, #000);
+  background: var(--Purple, #7945ff);
+  box-shadow: 0px 10px 0px 0px #000;
+  padding: 6rem 4rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 7rem;
+}
+.mainNav {
+  flex-direction: column;
+  row-gap: 4rem;
+}
