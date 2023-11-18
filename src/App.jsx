@@ -3,7 +3,7 @@ import MainMenu from './components/MainMenu';
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
-
+  let gameOptions = {};
   return <>{!gameStarted && <MainMenu />}</>;
 }
 
