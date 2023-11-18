@@ -131,8 +131,15 @@ svg {
   margin-inline: 1.9rem;
 }
 .flow > * + * {
+  margin-top: 3.9rem;
+}
+.flow-medium > * + * {
   margin-top: 3rem;
 }
+.flow-small > * + * {
+  margin-top: 1.5rem;
+}
+
 .margin-section {
   margin-block: 9.5rem;
 }
@@ -194,6 +201,5 @@ svg {
 }
 @media (min-width: 870px) {
   .container {
-    padding-inline: 16.5rem;
   }
 }
