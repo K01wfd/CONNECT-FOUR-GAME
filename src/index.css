@@ -199,6 +199,22 @@ svg {
 .btn-menu:hover {
   background: var(--red);
 }
+.btn-check {
+  background: url('./assets/images/icon-check.svg');
+  width: 68px;
+  height: 68px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 0;
+  cursor: pointer;
+}
+.btn-check:hover {
+  background-image: url('./assets/images/icon-check-hover.svg');
+}
+.btn-check:active {
+  transform: translateY(0.4rem) scale(0.98);
+}
 @media (min-width: 870px) {
   .container {
   }

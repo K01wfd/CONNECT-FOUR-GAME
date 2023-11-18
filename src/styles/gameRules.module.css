@@ -4,7 +4,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 95%;
-  padding: 6rem 4rem;
+  padding: 5rem 4rem;
   flex-direction: column;
   border-radius: 40px;
   border: 3px solid var(--Black, #000);
@@ -16,6 +16,11 @@
 }
 .rulesList {
   list-style: none;
+}
+.closeRules {
+  position: absolute;
+  left: 42%;
+  bottom: -3rem;
 }
 @media (min-width: 425px) {
   .gameRules {

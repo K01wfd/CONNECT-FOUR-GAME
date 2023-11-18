@@ -1,6 +1,5 @@
 import styles from '../styles/gameRules.module.css';
-
-function GameRues() {
+function GameRues({ onRulesClose }) {
   return (
     <article className={`${styles.gameRules} flow`} aria-label='game rules'>
       <h1 className='fs-h1'>Rules</h1>
@@ -44,6 +43,11 @@ function GameRues() {
           </ol>
         </div>
       </div>
+      <button
+        className={`${styles.closeRules} btn-check`}
+        aria-label='close game rules'
+        onClick={onRulesClose}
+      ></button>
     </article>
   );
 }

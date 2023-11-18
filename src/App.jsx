@@ -1,14 +1,27 @@
 import { useState } from 'react';
 import MainMenu from './components/MainMenu';
-import GameRues from './components/GameRues';
+import GameRues from './components/GameRules';
 
 function App() {
-  const [gameStarted, setGameStarted] = useState(false);
-  let gameOptions = { playing: false, rules: false };
+  const [game, setGame] = useState({
+    started: false,
+    twoPlayerMode: false,
+    cpuMode: false,
+    rules: false,
+  });
+
+  const switchGameState = () => {};
+  const toggleRules = () => {
+    setGame((prev) => {
+      return { ...prev, rules: !prev.rules };
+    });
+  };
   return (
     <>
-      {!gameStarted && <MainMenu />}
-      {gameOptions.rules && <GameRues />}
+      {!game.started && (
+        <MainMenu onGameRules={toggleRules} onPlayStart={switchGameState} />
+      )}
+      {game.rules && <GameRues onRulesClose={toggleRules} />}
     </>
   );
 }
