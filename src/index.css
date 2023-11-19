@@ -81,6 +81,9 @@ picture {
 .fs-h1 {
   font-size: var(--fs-h1-1);
 }
+.fs-h1-2 {
+  font-size: var(--fs-h1-2);
+}
 .fs-h2 {
   font-size: var(--fs-h2);
 }
@@ -143,7 +146,9 @@ picture {
 .flow-small > * + * {
   margin-top: 1.5rem;
 }
-
+.flow-xsmall > * + * {
+  margin-top: 1rem;
+}
 .margin-section {
   margin-block: 9.5rem;
 }

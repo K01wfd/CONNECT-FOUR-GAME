@@ -2,9 +2,13 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  grid-template-areas: 'player1 player2' 'gameboard gameboard';
+  column-gap: 4.1rem;
+  row-gap: 3rem;
 }
 
 .gameBoard {
+  grid-area: gameboard;
 }
 .fakeLayout {
 }
@@ -23,5 +27,9 @@
 .lowerLayer {
   position: absolute;
 }
-@media (max-width: 425px) {
+@media (min-width: 768px) {
+  .gameContainer {
+    grid-template-areas: 'player1 gameboard player2';
+    column-gap: 6rem;
+  }
 }
