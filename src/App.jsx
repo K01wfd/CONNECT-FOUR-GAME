@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import MainMenu from './components/MainMenu';
-import GameRues from './components/GameRules';
+import GameRules from './components/GameRules';
+import Game from './components/Game';
 
 function App() {
   const [game, setGame] = useState({
@@ -10,18 +11,23 @@ function App() {
     rules: false,
   });
 
-  const switchGameState = () => {};
+  const switchGameState = () => {
+    setGame((prev) => {
+      return { ...prev, started: true, twoPlayerMode: true };
+    });
+  };
   const toggleRules = () => {
     setGame((prev) => {
-      return { ...prev, rules: !prev.rules };
+      return { ...prev, started: !prev.started, rules: !prev.rules };
     });
   };
   return (
     <>
       {!game.started && (
-        <MainMenu onGameRules={toggleRules} onPlayStart={switchGameState} />
+        <MainMenu onGameRules={toggleRules} onTwoPlayerMode={switchGameState} />
       )}
-      {game.rules && <GameRues onRulesClose={toggleRules} />}
+      {game.rules && <GameRules onRulesClose={toggleRules} />}
+      {game.twoPlayerMode && <Game />}
     </>
   );
 }
