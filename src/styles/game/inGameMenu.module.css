@@ -1,0 +1,8 @@
+.menuHeader {
+  text-align: center;
+  padding-block: 5.8rem;
+}
+.menuHeader nav {
+  align-items: center;
+  justify-content: space-between;
+}

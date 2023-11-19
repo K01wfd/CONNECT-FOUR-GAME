@@ -14,7 +14,7 @@
   flex-direction: column;
   row-gap: 4rem;
 }
-@media (min-width: 425px) {
+@media (min-width: 678px) {
   .mainMenu {
     border-radius: 40px;
     border: 3px solid var(--Black, #000);

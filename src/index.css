@@ -53,7 +53,10 @@ svg {
 }
 .container {
   max-width: 1440px;
-  padding-inline: 2rem;
+  margin-inline: auto;
+}
+.container-game {
+  max-width: 632px;
   margin-inline: auto;
 }
 .sub-title {
@@ -215,7 +218,8 @@ svg {
 .btn-check:active {
   transform: translateY(0.4rem) scale(0.98);
 }
-@media (min-width: 870px) {
-  .container {
+@media (max-width: 678px) {
+  .container-game {
+    padding-inline: 2rem;
   }
 }
