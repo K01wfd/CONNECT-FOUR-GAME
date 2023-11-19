@@ -30,6 +30,9 @@ function Game() {
         </div>
         <Player2 />
       </main>
+      <footer>
+        <div className={`container bg-dark-purple`}></div>
+      </footer>
     </>
   );
 }

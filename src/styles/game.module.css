@@ -27,6 +27,12 @@
 .lowerLayer {
   position: absolute;
 }
+footer div {
+  border-radius: 60px 60px 0px 0px;
+  min-height: 200px;
+  position: relative;
+  z-index: -9999999;
+}
 @media (min-width: 768px) {
   .gameContainer {
     grid-template-areas: 'player1 gameboard player2';
