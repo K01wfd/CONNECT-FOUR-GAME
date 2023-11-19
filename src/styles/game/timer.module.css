@@ -1,0 +1,22 @@
+.timerContainer {
+  width: 235px;
+  height: 195px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-transform: uppercase;
+  bottom: -25%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.player1Turn {
+  background: url('../../assets/images/turn-background-red.svg') no-repeat;
+  background-size: cover;
+}
+.player2Turn {
+  background: url('../../assets/images/turn-background-yellow.svg') no-repeat;
+  background-size: cover;
+}

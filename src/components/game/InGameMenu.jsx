@@ -8,7 +8,7 @@ function InGameMenu() {
       <nav className='flex'>
         <button className='btn-menu'>menu</button>
         <img src={logo} alt='logo' />
-        <button className='btn-menu'>reset</button>
+        <button className='btn-menu'>restart</button>
       </nav>
     </header>
   );

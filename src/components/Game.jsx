@@ -6,6 +6,7 @@ import whiteLayerLarge from '../assets/images/board-layer-white-large.svg';
 import whiteLayerSmall from '../assets/images/board-layer-white-small.svg';
 import Player1 from './game/Player1';
 import Player2 from './game/Player2';
+import Timer from './game/Timer';
 function Game() {
   return (
     <>
@@ -13,7 +14,7 @@ function Game() {
       <main className={`${styles.gameContainer} container grid`}>
         <Player1 />
         <div className={`${styles.gameBoard} grid`} aria-label='game borad'>
-          <div className={styles.upperLayout}>
+          <div className={styles.upperLayer}>
             <picture>
               <source media='(max-width: 425px)' srcSet={whiteLayerSmall} />
               <source media='(min-width: 426px)' srcSet={whiteLayerLarge} />
@@ -29,6 +30,7 @@ function Game() {
           </div>
         </div>
         <Player2 />
+        <Timer />
       </main>
       <footer>
         <div className={`container bg-dark-purple`}></div>
