@@ -33,6 +33,14 @@ function Game() {
     });
   }, []);
 
+  let timeLeft = 5;
+  const id = setInterval(() => {
+    if (timeLeft < 0) {
+      clearInterval(id);
+    }
+    timeLeft--;
+  }, 1000);
+
   return (
     <>
       <InGameMenu />
@@ -58,9 +66,10 @@ function Game() {
               <img src={blackLayerLarge} alt='' />
             </picture>
           </div>
+          <Timer />
         </div>
+
         <Player2 />
-        <Timer />
       </main>
       <footer>
         <div className={`container bg-dark-purple`}></div>

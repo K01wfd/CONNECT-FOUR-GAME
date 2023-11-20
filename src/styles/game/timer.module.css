@@ -22,11 +22,11 @@
 }
 @media (min-width: 426px) and (max-width: 768px) {
   .timerContainer {
-    bottom: -18%;
+    bottom: -25%;
   }
 }
 @media (max-width: 425px) {
   .timerContainer {
-    bottom: -32%;
+    bottom: -58%;
   }
 }
