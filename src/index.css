@@ -8,6 +8,7 @@
 
 html {
   font-size: 62.5%;
+  overflow-x: hidden;
 }
 
 :root {
@@ -39,6 +40,7 @@ body {
   color: var(--black);
   position: relative;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1,
@@ -223,6 +225,11 @@ picture {
 }
 .btn-check:active {
   transform: translateY(0.4rem) scale(0.98);
+}
+.marker {
+  position: absolute;
+  top: -3rem;
+  left: 61%;
 }
 @media (max-width: 768px) {
   .container {

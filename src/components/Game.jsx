@@ -7,13 +7,43 @@ import whiteLayerSmall from '../assets/images/board-layer-white-small.svg';
 import Player1 from './game/Player1';
 import Player2 from './game/Player2';
 import Timer from './game/Timer';
+import Marker from './game/Marker';
+import { useEffect } from 'react';
 function Game() {
+  // moving marker
+  useEffect(() => {
+    let marker = document.getElementById('marker');
+    const board = document.getElementById('gameBoard');
+    board.addEventListener('mousemove', (e) => {
+      let boardOffset = board.clientWidth * 0.08;
+      if (
+        e.offsetX > boardOffset &&
+        e.offsetX < board.clientWidth - boardOffset
+      ) {
+        marker.style.left = e.offsetX - marker.clientWidth / 2 + 'px';
+      }
+    });
+    board.addEventListener('touchstart', (e) => {
+      if (
+        e.offsetX > boardOffset &&
+        e.offsetX < board.clientWidth - boardOffset
+      ) {
+        marker.style.left = e.offsetX - marker.clientWidth / 2 + 'px';
+      }
+    });
+  }, []);
+
   return (
     <>
       <InGameMenu />
       <main className={`${styles.gameContainer} container grid`}>
         <Player1 />
-        <div className={`${styles.gameBoard} grid`} aria-label='game borad'>
+        <div
+          id='gameBoard'
+          className={`${styles.gameBoard} grid`}
+          aria-label='game borad'
+        >
+          <Marker />
           <div className={styles.upperLayer}>
             <picture>
               <source media='(max-width: 425px)' srcSet={whiteLayerSmall} />

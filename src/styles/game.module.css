@@ -3,29 +3,23 @@
   align-items: center;
   position: relative;
   grid-template-areas: 'player1 player2' 'gameboard gameboard';
+  grid-template-rows: 200px auto;
   column-gap: 4.1rem;
   row-gap: 3rem;
 }
 
 .gameBoard {
   grid-area: gameboard;
-}
-.fakeLayout {
-}
-.upperLayer {
-  border-radius: 40px;
-  border: 3px solid #000;
-  box-shadow: 0px 10px 0px 0px #000;
+  position: relative;
+  cursor: pointer;
 }
 
 .lowerLayer {
   z-index: -999;
-  transform: translateY(0.5rem);
-}
-
-.lowerLayer {
+  transform: translateY(0);
   position: absolute;
 }
+
 footer div {
   border-radius: 60px 60px 0px 0px;
   min-height: 200px;
@@ -35,6 +29,10 @@ footer div {
 @media (min-width: 768px) {
   .gameContainer {
     grid-template-areas: 'player1 gameboard player2';
+    grid-template-rows: max-content;
     column-gap: 6rem;
+  }
+  .lowerLayer {
+    transform: translateY(0.5rem);
   }
 }
