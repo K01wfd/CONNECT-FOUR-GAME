@@ -20,3 +20,13 @@
   background: url('../../assets/images/turn-background-yellow.svg') no-repeat;
   background-size: cover;
 }
+@media (min-width: 426px) and (max-width: 768px) {
+  .timerContainer {
+    bottom: -18%;
+  }
+}
+@media (max-width: 425px) {
+  .timerContainer {
+    bottom: -32%;
+  }
+}
