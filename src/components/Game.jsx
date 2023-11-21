@@ -10,24 +10,26 @@ import Timer from './game/Timer';
 import Marker from './game/Marker';
 import { useEffect, useState } from 'react';
 function Game() {
-  const [turnTime, setTurnTime] = useState(30);
-  // moving marker
+  const [game, setGame] = useState({
+    players: [
+      { name: 'player 1', isActive: true, counters: 0, timeLeft: 30, score: 0 },
+      { name: 'player 1', isActive: false, counters: 0, timeLeft: 0, score: 0 },
+    ],
+  });
+  console.log();
+
   useEffect(() => {
     moveMarker('marker', 'gameBoard');
-    const timer = setInterval(() => {
-      if (turnTime > 0) {
-        setTurnTime((prevTime) => prevTime - 1);
-      }
-    }, 1000);
+    const timer = watchTurnTime(game, setGame);
     return () => clearInterval(timer);
-  }, [turnTime]);
+  }, [game]);
 
   return (
     <>
       <InGameMenu />
       <main className={`${styles.gameContainer} container grid`}>
         <Player1 />
-        <h1 className='fs-h1'>{turnTime}</h1>
+
         <div
           id='gameBoard'
           className={`${styles.gameBoard} grid`}
@@ -48,7 +50,12 @@ function Game() {
               <img src={blackLayerLarge} alt='' />
             </picture>
           </div>
-          <Timer timer={turnTime} />
+          {game.players.map(
+            (player) =>
+              player.isActive && (
+                <Timer key={player.timeLeft} timer={player.timeLeft} />
+              )
+          )}
         </div>
 
         <Player2 />
@@ -81,4 +88,19 @@ const moveMarker = (markerId, boardId) => {
     }
   });
 };
+const watchTurnTime = (game, setGame) => {
+  const timer = setInterval(() => {
+    const newPlayersState = game.players.map((player) => {
+      return {
+        ...player,
+        timeLeft: player.isActive ? player.timeLeft - 1 : player.timeLeft,
+      };
+    });
+    if (game.players[0].timeLeft || game.players[1].timeLeft > 0) {
+      setGame({ ...game, players: newPlayersState });
+    }
+  }, 1000);
+  return timer;
+};
+
 export default Game;
