@@ -8,44 +8,26 @@ import Player1 from './game/Player1';
 import Player2 from './game/Player2';
 import Timer from './game/Timer';
 import Marker from './game/Marker';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 function Game() {
+  const [turnTime, setTurnTime] = useState(30);
   // moving marker
   useEffect(() => {
-    let marker = document.getElementById('marker');
-    const board = document.getElementById('gameBoard');
-    board.addEventListener('mousemove', (e) => {
-      let boardOffset = board.clientWidth * 0.08;
-      if (
-        e.offsetX > boardOffset &&
-        e.offsetX < board.clientWidth - boardOffset
-      ) {
-        marker.style.left = e.offsetX - marker.clientWidth / 2 + 'px';
+    moveMarker('marker', 'gameBoard');
+    const timer = setInterval(() => {
+      if (turnTime > 0) {
+        setTurnTime((prevTime) => prevTime - 1);
       }
-    });
-    board.addEventListener('touchstart', (e) => {
-      if (
-        e.offsetX > boardOffset &&
-        e.offsetX < board.clientWidth - boardOffset
-      ) {
-        marker.style.left = e.offsetX - marker.clientWidth / 2 + 'px';
-      }
-    });
-  }, []);
-
-  let timeLeft = 5;
-  const id = setInterval(() => {
-    if (timeLeft < 0) {
-      clearInterval(id);
-    }
-    timeLeft--;
-  }, 1000);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [turnTime]);
 
   return (
     <>
       <InGameMenu />
       <main className={`${styles.gameContainer} container grid`}>
         <Player1 />
+        <h1 className='fs-h1'>{turnTime}</h1>
         <div
           id='gameBoard'
           className={`${styles.gameBoard} grid`}
@@ -66,7 +48,7 @@ function Game() {
               <img src={blackLayerLarge} alt='' />
             </picture>
           </div>
-          <Timer />
+          <Timer timer={turnTime} />
         </div>
 
         <Player2 />
@@ -78,4 +60,25 @@ function Game() {
   );
 }
 
+const moveMarker = (markerId, boardId) => {
+  let marker = document.getElementById(markerId);
+  const board = document.getElementById(boardId);
+  board.addEventListener('mousemove', (e) => {
+    let boardOffset = board.clientWidth * 0.08;
+    if (
+      e.offsetX > boardOffset &&
+      e.offsetX < board.clientWidth - boardOffset
+    ) {
+      marker.style.left = e.offsetX - marker.clientWidth / 2 + 'px';
+    }
+  });
+  board.addEventListener('touchstart', (e) => {
+    if (
+      e.offsetX > boardOffset &&
+      e.offsetX < board.clientWidth - boardOffset
+    ) {
+      marker.style.left = e.offsetX - marker.clientWidth / 2 + 'px';
+    }
+  });
+};
 export default Game;
