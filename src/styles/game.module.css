@@ -19,7 +19,13 @@
   transform: translateY(0);
   position: absolute;
 }
-
+.counter {
+  position: absolute;
+  top: 2.9%;
+  left: 86.35%;
+  z-index: -99;
+  animation: animateCounter 800ms ease-in 1 forwards;
+}
 footer div {
   border-radius: 60px 60px 0px 0px;
   min-height: 200px;
@@ -34,5 +40,21 @@ footer div {
   }
   .lowerLayer {
     transform: translateY(0.5rem);
+  }
+}
+@keyframes animateCounter {
+  0% {
+    bottom: 100%;
+  }
+
+  50% {
+    bottom: 9%;
+  }
+  75% {
+    bottom: 13%;
+  }
+
+  100% {
+    bottom: 9%;
   }
 }
