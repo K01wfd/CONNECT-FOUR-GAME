@@ -6,14 +6,17 @@ import Player1 from './game/Player1';
 import Player2 from './game/Player2';
 import Timer from './game/Timer';
 import Marker from './game/Marker';
+import Counter from './game/Counter';
 function Game() {
   const [board, setBoard] = useState(boardShape);
   const [currentPlayer, setCurrentPlayer] = useState('red');
   let colIndex = null;
 
-  const handleMouseOver = (e) => {
+  const handleCouterDrop = (e) => {
     let newBoard = [...board.map((inner) => [...inner])];
     let mouseLocation = (e.nativeEvent.offsetX / e.target.clientWidth) * 100;
+
+    // get mouse location on which column
     for (let i = 0; i < whichColumn.length; i++) {
       if (
         mouseLocation > whichColumn[i].leftOffset &&
@@ -55,9 +58,22 @@ function Game() {
           id='gameBoard'
           className={`${styles.gameBoard} grid`}
           aria-label='game borad'
-          onClick={(e) => handleMouseOver(e)}
+          onClick={(e) => handleCouterDrop(e)}
         >
           <Marker />
+          {board.map((col, colIndex) =>
+            col.map(
+              (cel, rowIndex) =>
+                cel !== null && (
+                  <Counter
+                    key={colIndex + rowIndex}
+                    col={colIndex}
+                    row={rowIndex}
+                    color={cel}
+                  />
+                )
+            )
+          )}
           <div className={styles.upperLayer}>
             <picture>
               <source
