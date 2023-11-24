@@ -92,7 +92,9 @@ picture {
 .fs-h3 {
   font-size: var(--fs-h3);
 }
-
+.uppercase {
+  text-transform: uppercase;
+}
 .text-black {
   color: var(--black);
 }
