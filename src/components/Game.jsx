@@ -17,7 +17,7 @@ function Game() {
   let winner = false;
 
   // handle counter drop
-  const handleCouterDrop = (e) => {
+  const handleCounter = (e) => {
     if (!winner) {
       let newBoard = [...board.map((inner) => [...inner])];
       let mouseLocation = (e.nativeEvent.offsetX / e.target.clientWidth) * 100;
@@ -33,6 +33,7 @@ function Game() {
           boardColumn = null;
         }
       }
+
       // update column index
       if (boardColumn !== null) {
         const targetColumn = newBoard[boardColumn];
@@ -67,8 +68,41 @@ function Game() {
     }, 1000);
     return timer;
   };
+
+  const checkWinner = () => {
+    // Check vertically
+    for (let row = 0; row < 6; row++) {
+      for (let col = 0; col < 3; col++) {
+        if (
+          board[row][col] &&
+          board[row][col] === board[row][col + 1] &&
+          board[row][col] === board[row][col + 2] &&
+          board[row][col] === board[row][col + 3]
+        ) {
+          console.log(board[row][col]); // Winning player found
+        }
+      }
+    }
+    // Check horizontally
+    for (let row = 0; row < 6; row++) {
+      for (let col = 0; col < 4; col++) {
+        if (
+          board[col][row] &&
+          board[col][row] === board[col + 1][row] &&
+          board[col][row] === board[col + 2][row] &&
+          board[col][row] === board[col + 3][row]
+        ) {
+          winner = true;
+        }
+      }
+    }
+  };
   useEffect(() => {
     const timer = watchTimeLeft();
+    checkWinner();
+    if (winner) {
+      clearInterval(timer);
+    }
     return () => clearInterval(timer);
   }, [board, currentPlayer]);
 
@@ -83,7 +117,7 @@ function Game() {
           id='gameBoard'
           className={`${styles.gameBoard} grid`}
           aria-label='game borad'
-          onClick={(e) => handleCouterDrop(e)}
+          onClick={(e) => handleCounter(e)}
           onMouseMove={(e) => moveMarker(e, 'marker', currentPlayer.timeLeft)}
         >
           {/* MARKER */}

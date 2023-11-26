@@ -54,7 +54,7 @@ footer div {
     column-gap: 6rem;
   }
   .lowerLayer {
-    transform: translateY(0.5rem);
+    transform: translateY(0.2rem);
   }
 }
 @keyframes animateRow5 {

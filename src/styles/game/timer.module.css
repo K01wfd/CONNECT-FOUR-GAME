@@ -37,12 +37,14 @@
   background-size: cover;
 }
 @media (min-width: 426px) and (max-width: 768px) {
-  .timerContainer {
+  .timerContainer,
+  .winner {
     bottom: -25%;
   }
 }
 @media (max-width: 425px) {
-  .timerContainer {
+  .timerContainer,
+  .winner {
     bottom: -58%;
   }
 }
