@@ -20,11 +20,11 @@ function Game() {
   const [currentPlayer, setCurrentPlayer] = useState(player);
   const [score, setScore] = useState({ player1Score: 0, player2Score: 0 });
   let boardColumn = null;
-  let winner = checkWinner(board);
-
-  // handle counter drop
+  // check if there is pattern winner
+  let patternWinner = checkWinner(board);
+  // handle counter drop when column click
   const handleCounter = (e) => {
-    if (!winner && currentPlayer.timeLeft !== 0) {
+    if (!patternWinner && currentPlayer.timeLeft !== 0) {
       let newBoard = [...board.map((inner) => [...inner])];
       let mouseLocation = (e.nativeEvent.offsetX / e.target.clientWidth) * 100;
       // get mouse location on which column
@@ -51,8 +51,8 @@ function Game() {
           }
         }
 
-        console.log(winner);
-        if (!winner) {
+        console.log(patternWinner);
+        if (!patternWinner) {
           setCurrentPlayer((prevPlayer) => {
             return {
               ...prevPlayer,
@@ -66,18 +66,24 @@ function Game() {
     }
   };
 
+  const rematch = () => {
+    setBoard(boardShape);
+    setCurrentPlayer(player);
+    patternWinner = undefined;
+  };
   useEffect(() => {
+    // count down
     const timer = countDown(currentPlayer, setCurrentPlayer);
+    // set winner score if timeout
     setTimeOutWinnerScore(currentPlayer, setScore);
-    if (winner) {
+    // if winner clear timeInterval and set score
+    if (patternWinner) {
       clearInterval(timer);
-    }
-    if (winner) {
       setScore((prevScore) => {
-        if (winner.color === 'red') {
+        if (patternWinner.color === 'red') {
           return { ...prevScore, player1Score: prevScore.player1Score + 1 };
         }
-        if (winner.color === 'yellow') {
+        if (patternWinner.color === 'yellow') {
           return { ...prevScore, player2Score: prevScore.player2Score + 1 };
         }
       });
@@ -85,7 +91,7 @@ function Game() {
     return () => clearInterval(timer);
   }, [board, currentPlayer]);
 
-  console.log(winner);
+  console.log(patternWinner);
   return (
     <>
       <InGameMenu />
@@ -98,7 +104,9 @@ function Game() {
           className={`${styles.gameBoard} grid`}
           aria-label='game borad'
           onClick={(e) => handleCounter(e)}
-          onMouseMove={(e) => moveMarker(e, currentPlayer.timeLeft, winner)}
+          onMouseMove={(e) =>
+            moveMarker(e, currentPlayer.timeLeft, patternWinner)
+          }
         >
           {/* MARKER */}
           <Marker />
@@ -145,16 +153,16 @@ function Game() {
           </div>
         </div>
         {/* TIMER */}
-        {!winner && currentPlayer.timeLeft !== 0 ? (
+        {!patternWinner && currentPlayer.timeLeft !== 0 ? (
           <Timer currentPlayer={currentPlayer} />
         ) : null}
         {/* WINNER */}
-        {winner && currentPlayer.timeLeft !== 0 ? (
-          <Winner color={winner.color} />
+        {patternWinner && currentPlayer.timeLeft !== 0 ? (
+          <Winner color={patternWinner.color} rematch={() => rematch()} />
         ) : null}
         {/* TIMEOUT */}
-        {currentPlayer.timeLeft === 0 && !winner ? (
-          <TimeOut currentPlayer={currentPlayer} />
+        {currentPlayer.timeLeft === 0 && !patternWinner ? (
+          <TimeOut currentPlayer={currentPlayer} rematch={() => rematch()} />
         ) : null}
         {/* PLAYER 2 */}
         <Player2 score={score.player2Score} />

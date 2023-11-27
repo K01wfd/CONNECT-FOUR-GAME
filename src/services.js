@@ -45,6 +45,6 @@ export const boardShape = [
 ];
 export const player = {
   activePlayer: 'red',
-  timeLeft: 5,
+  timeLeft: 30,
   isWinner: false,
 };

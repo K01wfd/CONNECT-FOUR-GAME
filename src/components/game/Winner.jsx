@@ -1,5 +1,5 @@
 import styles from '../../styles/game/timer.module.css';
-function Winner({ color }) {
+function Winner({ color, rematch }) {
   console.log(color);
   return (
     <div className={`${styles.winner} bg-white`}>
@@ -15,7 +15,9 @@ function Winner({ color }) {
           <p className='uppercase fs-h1'>Wins!</p>
         </>
       )}
-      <button className='btn-menu'>Play Again</button>
+      <button className='btn-menu' onClick={rematch}>
+        Play Again
+      </button>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import styles from '../../styles/game/timer.module.css';
 
-function TimeOut({ currentPlayer }) {
+function TimeOut({ currentPlayer, rematch }) {
   const { activePlayer, timeLeft } = currentPlayer;
   return (
     <div className={`${styles.winner} bg-white`}>
@@ -15,7 +15,9 @@ function TimeOut({ currentPlayer }) {
           <p className='uppercase fs-h1'>Wins!</p>
         </>
       )}
-      <button className='btn-menu'>Play Again</button>
+      <button className='btn-menu' onClick={rematch}>
+        Play Again
+      </button>
     </div>
   );
 }
