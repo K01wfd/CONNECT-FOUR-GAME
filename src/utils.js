@@ -73,3 +73,14 @@ export const setTimeOutWinnerScore = (currentPlayer, setScore) => {
     }
   });
 };
+export const setFooterBg = (patternWinner, currentPlayer, footerBg) => {
+  if (patternWinner) {
+    footerBg = patternWinner.color === 'red' ? 'bg-red' : 'bg-yellow';
+  }
+  footerBg =
+    currentPlayer.activePlayer === 'red' && currentPlayer.timeLeft === 0
+      ? 'bg-yellow'
+      : currentPlayer.activePlayer === 'yellow' && currentPlayer.timeLeft === 0
+      ? 'bg-red'
+      : footerBg;
+};

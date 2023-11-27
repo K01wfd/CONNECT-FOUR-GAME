@@ -46,6 +46,7 @@ footer div {
   min-height: 200px;
   position: relative;
   z-index: -9999999;
+  background: var(--dark-purple);
 }
 @media (min-width: 768px) {
   .gameContainer {

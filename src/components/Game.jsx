@@ -5,6 +5,7 @@ import {
   moveMarker,
   checkWinner,
   setTimeOutWinnerScore,
+  setFooterBg,
 } from '../utils';
 import styles from '../styles/game.module.css';
 import InGameMenu from './game/InGameMenu';
@@ -19,6 +20,7 @@ function Game() {
   const [board, setBoard] = useState(boardShape);
   const [currentPlayer, setCurrentPlayer] = useState(player);
   const [score, setScore] = useState({ player1Score: 0, player2Score: 0 });
+  let footerBg = '';
   let boardColumn = null;
   // check if there is pattern winner
   let patternWinner = checkWinner(board);
@@ -39,7 +41,6 @@ function Game() {
           boardColumn = null;
         }
       }
-
       // update column index
       if (boardColumn !== null) {
         const targetColumn = newBoard[boardColumn];
@@ -50,8 +51,6 @@ function Game() {
             break;
           }
         }
-
-        console.log(patternWinner);
         if (!patternWinner) {
           setCurrentPlayer((prevPlayer) => {
             return {
@@ -66,11 +65,14 @@ function Game() {
     }
   };
 
+  // rematch
   const rematch = () => {
     setBoard(boardShape);
     setCurrentPlayer(player);
     patternWinner = undefined;
   };
+  // set footer bg
+  setFooterBg(patternWinner, currentPlayer, footerBg);
   useEffect(() => {
     // count down
     const timer = countDown(currentPlayer, setCurrentPlayer);
@@ -168,7 +170,7 @@ function Game() {
         <Player2 score={score.player2Score} />
       </main>
       <footer>
-        <div className={`container bg-dark-purple`}></div>
+        <div className={`container ${footerBg}`}></div>
       </footer>
     </>
   );
