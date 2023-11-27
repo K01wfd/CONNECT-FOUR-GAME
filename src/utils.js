@@ -58,3 +58,18 @@ export const moveMarker = (e, timeLeft, winner) => {
     }
   }
 };
+export const setTimeOutWinnerScore = (currentPlayer, setScore) => {
+  setScore((prevScore) => {
+    if (currentPlayer.timeLeft === 0 && currentPlayer.activePlayer === 'red') {
+      return { ...prevScore, player2Score: prevScore.player2Score + 1 };
+    }
+    if (
+      currentPlayer.timeLeft === 0 &&
+      currentPlayer.activePlayer === 'yellow'
+    ) {
+      return { ...prevScore, player1Score: prevScore.player1Score + 1 };
+    } else {
+      return { ...prevScore };
+    }
+  });
+};

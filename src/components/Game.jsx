@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { boardShape, images, player, whichColumn } from '../services';
-import { countDown, moveMarker, checkWinner } from '../utils';
+import {
+  countDown,
+  moveMarker,
+  checkWinner,
+  setTimeOutWinnerScore,
+} from '../utils';
 import styles from '../styles/game.module.css';
 import InGameMenu from './game/InGameMenu';
 import Player1 from './game/Player1';
@@ -13,6 +18,7 @@ import TimeOut from './game/TimeOut';
 function Game() {
   const [board, setBoard] = useState(boardShape);
   const [currentPlayer, setCurrentPlayer] = useState(player);
+  const [score, setScore] = useState({ player1Score: 0, player2Score: 0 });
   let boardColumn = null;
   let winner = checkWinner(board);
 
@@ -62,8 +68,19 @@ function Game() {
 
   useEffect(() => {
     const timer = countDown(currentPlayer, setCurrentPlayer);
+    setTimeOutWinnerScore(currentPlayer, setScore);
     if (winner) {
       clearInterval(timer);
+    }
+    if (winner) {
+      setScore((prevScore) => {
+        if (winner.color === 'red') {
+          return { ...prevScore, player1Score: prevScore.player1Score + 1 };
+        }
+        if (winner.color === 'yellow') {
+          return { ...prevScore, player2Score: prevScore.player2Score + 1 };
+        }
+      });
     }
     return () => clearInterval(timer);
   }, [board, currentPlayer]);
@@ -74,7 +91,7 @@ function Game() {
       <InGameMenu />
       <main className={`${styles.gameContainer} container grid`}>
         {/* PLAYER 1 */}
-        <Player1 />
+        <Player1 score={score.player1Score} />
         {/* GAME BOARD CONTAINER */}
         <div
           id='gameBoard'
@@ -140,7 +157,7 @@ function Game() {
           <TimeOut currentPlayer={currentPlayer} />
         ) : null}
         {/* PLAYER 2 */}
-        <Player2 />
+        <Player2 score={score.player2Score} />
       </main>
       <footer>
         <div className={`container bg-dark-purple`}></div>
