@@ -20,7 +20,7 @@ function Game() {
   const [board, setBoard] = useState(boardShape);
   const [currentPlayer, setCurrentPlayer] = useState(player);
   const [score, setScore] = useState({ player1Score: 0, player2Score: 0 });
-  let footerBg = '';
+
   let boardColumn = null;
   // check if there is pattern winner
   let patternWinner = checkWinner(board);
@@ -72,7 +72,7 @@ function Game() {
     patternWinner = undefined;
   };
   // set footer bg
-  setFooterBg(patternWinner, currentPlayer, footerBg);
+  let footerBg = setFooterBg(patternWinner, currentPlayer);
   useEffect(() => {
     // count down
     const timer = countDown(currentPlayer, setCurrentPlayer);
@@ -93,7 +93,6 @@ function Game() {
     return () => clearInterval(timer);
   }, [board, currentPlayer]);
 
-  console.log(patternWinner);
   return (
     <>
       <InGameMenu />

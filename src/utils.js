@@ -73,7 +73,8 @@ export const setTimeOutWinnerScore = (currentPlayer, setScore) => {
     }
   });
 };
-export const setFooterBg = (patternWinner, currentPlayer, footerBg) => {
+export const setFooterBg = (patternWinner, currentPlayer) => {
+  let footerBg = '';
   if (patternWinner) {
     footerBg = patternWinner.color === 'red' ? 'bg-red' : 'bg-yellow';
   }
@@ -83,4 +84,5 @@ export const setFooterBg = (patternWinner, currentPlayer, footerBg) => {
       : currentPlayer.activePlayer === 'yellow' && currentPlayer.timeLeft === 0
       ? 'bg-red'
       : footerBg;
+  return footerBg;
 };
