@@ -19,7 +19,7 @@ export const checkWinner = (board) => {
         board[col][row] === board[col][row + 3]
       ) {
         return {
-          color: board[row][col],
+          color: board[col][row],
           indexes: [{ col: col, rows: [row, row + 1, row + 2, row + 3] }],
         };
       }

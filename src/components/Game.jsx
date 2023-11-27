@@ -68,6 +68,7 @@ function Game() {
     return () => clearInterval(timer);
   }, [board, currentPlayer]);
 
+  console.log(winner);
   return (
     <>
       <InGameMenu />
@@ -132,7 +133,7 @@ function Game() {
         ) : null}
         {/* WINNER */}
         {winner && currentPlayer.timeLeft !== 0 ? (
-          <Winner winnerColor={winner.color} />
+          <Winner color={winner.color} />
         ) : null}
         {/* TIMEOUT */}
         {currentPlayer.timeLeft === 0 && !winner ? (
