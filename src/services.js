@@ -43,3 +43,7 @@ export const boardShape = [
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
 ];
+export const player = {
+  activePlayer: 'red',
+  timeLeft: 5,
+};

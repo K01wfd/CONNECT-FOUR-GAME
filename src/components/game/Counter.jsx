@@ -3,9 +3,6 @@ import { images } from '../../services';
 import styles from '../../styles/game.module.css';
 import { counterLargeCordinations } from '../../services';
 function Counter({ col, row, color }) {
-  const animatePicture = {
-    animation: 'animateCounter 800ms ease-in 1 forwards',
-  };
   let className = 'row' + row;
   return (
     <picture

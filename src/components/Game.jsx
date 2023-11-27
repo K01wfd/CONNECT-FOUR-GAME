@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { boardShape, images, whichColumn } from '../services';
+import { useEffect, useState } from 'react';
+import { boardShape, images, player, whichColumn } from '../services';
+import { countDown, moveMarker, checkWinner } from '../utils';
 import styles from '../styles/game.module.css';
 import InGameMenu from './game/InGameMenu';
 import Player1 from './game/Player1';
@@ -7,18 +8,17 @@ import Player2 from './game/Player2';
 import Timer from './game/Timer';
 import Marker from './game/Marker';
 import Counter from './game/Counter';
+import Winner from './game/Winner';
+import TimeOut from './game/TimeOut';
 function Game() {
   const [board, setBoard] = useState(boardShape);
-  const [currentPlayer, setCurrentPlayer] = useState({
-    activePlayer: 'red',
-    timeLeft: 5,
-  });
+  const [currentPlayer, setCurrentPlayer] = useState(player);
   let boardColumn = null;
-  let winner = false;
+  let winner = checkWinner(board);
 
   // handle counter drop
   const handleCounter = (e) => {
-    if (!winner) {
+    if (!winner && currentPlayer.timeLeft !== 0) {
       let newBoard = [...board.map((inner) => [...inner])];
       let mouseLocation = (e.nativeEvent.offsetX / e.target.clientWidth) * 100;
       // get mouse location on which column
@@ -40,66 +40,28 @@ function Game() {
         for (let i = targetColumn.length - 1; i >= 0; i--) {
           if (targetColumn[i] === null) {
             newBoard[boardColumn][i] = currentPlayer.activePlayer;
+            setBoard(newBoard);
             break;
           }
         }
-        setBoard(newBoard);
-        setCurrentPlayer((prevPlayer) => {
-          return {
-            ...prevPlayer,
-            activePlayer: prevPlayer.activePlayer === 'red' ? 'yellow' : 'red',
-            timeLeft: 30,
-          };
-        });
-      }
-    }
-  };
 
-  // watch time
-  const watchTimeLeft = () => {
-    const timer = setInterval(() => {
-      if (currentPlayer.timeLeft > 0) {
-        setCurrentPlayer((prevPlayer) => {
-          return { ...prevPlayer, timeLeft: prevPlayer.timeLeft - 1 };
-        });
-      } else {
-        winner = true;
-      }
-    }, 1000);
-    return timer;
-  };
-
-  const checkWinner = () => {
-    // Check vertically
-    for (let row = 0; row < 6; row++) {
-      for (let col = 0; col < 3; col++) {
-        if (
-          board[row][col] &&
-          board[row][col] === board[row][col + 1] &&
-          board[row][col] === board[row][col + 2] &&
-          board[row][col] === board[row][col + 3]
-        ) {
-          console.log(board[row][col]); // Winning player found
-        }
-      }
-    }
-    // Check horizontally
-    for (let row = 0; row < 6; row++) {
-      for (let col = 0; col < 4; col++) {
-        if (
-          board[col][row] &&
-          board[col][row] === board[col + 1][row] &&
-          board[col][row] === board[col + 2][row] &&
-          board[col][row] === board[col + 3][row]
-        ) {
-          winner = true;
+        console.log(winner);
+        if (!winner) {
+          setCurrentPlayer((prevPlayer) => {
+            return {
+              ...prevPlayer,
+              activePlayer:
+                prevPlayer.activePlayer === 'red' ? 'yellow' : 'red',
+              timeLeft: 30,
+            };
+          });
         }
       }
     }
   };
+
   useEffect(() => {
-    const timer = watchTimeLeft();
-    checkWinner();
+    const timer = countDown(currentPlayer, setCurrentPlayer);
     if (winner) {
       clearInterval(timer);
     }
@@ -118,7 +80,7 @@ function Game() {
           className={`${styles.gameBoard} grid`}
           aria-label='game borad'
           onClick={(e) => handleCounter(e)}
-          onMouseMove={(e) => moveMarker(e, 'marker', currentPlayer.timeLeft)}
+          onMouseMove={(e) => moveMarker(e, currentPlayer.timeLeft, winner)}
         >
           {/* MARKER */}
           <Marker />
@@ -163,9 +125,19 @@ function Game() {
               <img src={images.blackLayerLarge} alt='' />
             </picture>
           </div>
-          {/* TIMER */}
-          <Timer currentPlayer={currentPlayer} />
         </div>
+        {/* TIMER */}
+        {!winner && currentPlayer.timeLeft !== 0 ? (
+          <Timer currentPlayer={currentPlayer} />
+        ) : null}
+        {/* WINNER */}
+        {winner && currentPlayer.timeLeft !== 0 ? (
+          <Winner winnerColor={winner.color} />
+        ) : null}
+        {/* TIMEOUT */}
+        {currentPlayer.timeLeft === 0 && !winner ? (
+          <TimeOut currentPlayer={currentPlayer} />
+        ) : null}
         {/* PLAYER 2 */}
         <Player2 />
       </main>
@@ -175,22 +147,5 @@ function Game() {
     </>
   );
 }
-
-const moveMarker = (e, markerId, timeLeft) => {
-  if (timeLeft !== 0) {
-    let marker = document.getElementById(markerId);
-
-    let boardOffset;
-
-    boardOffset = e.target.clientWidth * 0.078;
-    if (
-      e.nativeEvent.offsetX > boardOffset &&
-      e.nativeEvent.offsetX < e.target.clientWidth - boardOffset
-    ) {
-      marker.style.left =
-        e.nativeEvent.offsetX - marker.clientWidth / 2.2 + 'px';
-    }
-  }
-};
 
 export default Game;
