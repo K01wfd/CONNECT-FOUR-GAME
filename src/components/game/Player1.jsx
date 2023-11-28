@@ -4,7 +4,7 @@ function Player1({ score }) {
   return (
     <div className={`${styles.player1} bg-white flex`}>
       <img src={playerOneImage} alt='' />
-      <div>
+      <div className={`${styles.playerDetails1} flex`}>
         <p className='fs-h3'>Player 1</p>
         <p className='fs-h1-2'>{score}</p>
       </div>

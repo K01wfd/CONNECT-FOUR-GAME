@@ -7,7 +7,7 @@
   align-items: center;
   flex-direction: column;
   text-transform: uppercase;
-  bottom: -25%;
+  bottom: -29%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -16,7 +16,7 @@
   background: var(--White, #fff);
   border-radius: 20px;
   border: 3px solid var(--Black, #000);
-  bottom: -25%;
+  bottom: -29%;
   box-shadow: 0px 10px 0px 0px #000;
   display: flex;
   flex-direction: column;
@@ -39,12 +39,12 @@
 @media (min-width: 426px) and (max-width: 768px) {
   .timerContainer,
   .winner {
-    bottom: -25%;
+    bottom: -22%;
   }
 }
 @media (max-width: 425px) {
   .timerContainer,
   .winner {
-    bottom: -58%;
+    bottom: -37%;
   }
 }

@@ -1,17 +1,19 @@
 .gameContainer {
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   grid-template-areas: 'player1 player2' 'gameboard gameboard';
-  grid-template-rows: 200px auto;
+  grid-template-rows: 140px auto;
   column-gap: 4.1rem;
-  row-gap: 3rem;
+  row-gap: 2rem;
 }
 
 .gameBoard {
   grid-area: gameboard;
   position: relative;
   cursor: pointer;
+  max-width: 580px;
+  margin-inline: auto;
 }
 
 .lowerLayer {
@@ -52,6 +54,7 @@ footer div {
   .gameContainer {
     grid-template-areas: 'player1 gameboard player2';
     grid-template-rows: max-content;
+    align-items: center;
     column-gap: 6rem;
   }
   .lowerLayer {

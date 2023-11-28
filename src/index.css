@@ -39,7 +39,7 @@ body {
   font-size: var(--fs-body);
   color: var(--black);
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
 }
 

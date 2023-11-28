@@ -169,7 +169,7 @@ function Game() {
         <Player2 score={score.player2Score} />
       </main>
       <footer>
-        <div className={`container ${footerBg}`}></div>
+        <div className={`${footerBg}`}></div>
       </footer>
     </>
   );
