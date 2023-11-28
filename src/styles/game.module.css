@@ -12,7 +12,7 @@
   grid-area: gameboard;
   position: relative;
   cursor: pointer;
-  max-width: 580px;
+
   margin-inline: auto;
 }
 
@@ -21,28 +21,7 @@
   transform: translateY(0);
   position: absolute;
 }
-.counter {
-  position: absolute;
-  z-index: -99;
-}
-.row5 {
-  animation: animateRow5 500ms ease-in 1;
-}
-.row4 {
-  animation: animateRow4 400ms ease-in 1;
-}
-.row3 {
-  animation: animateRow3 300ms ease-in 1;
-}
-.row2 {
-  animation: animateRow2 200ms ease-in 1;
-}
-.row1 {
-  animation: animateRow1 100ms ease-in 1;
-}
-.row0 {
-  animation: animateRow0 50ms ease-in 1;
-}
+
 footer div {
   border-radius: 60px 60px 0px 0px;
   min-height: 200px;
@@ -59,90 +38,5 @@ footer div {
   }
   .lowerLayer {
     transform: translateY(0.2rem);
-  }
-}
-@keyframes animateRow5 {
-  0% {
-    top: 0%;
-  }
-
-  50% {
-    top: 78.5%;
-  }
-  75% {
-    top: 68%;
-  }
-  100% {
-    top: 78.5%;
-  }
-}
-@keyframes animateRow4 {
-  0% {
-    top: 0%;
-  }
-  50% {
-    top: 63.5%;
-  }
-  75% {
-    top: 55%;
-  }
-  100% {
-    top: 63.5%;
-  }
-}
-@keyframes animateRow3 {
-  0% {
-    top: 0%;
-  }
-  50% {
-    top: 48%;
-  }
-  75% {
-    top: 40%;
-  }
-  100% {
-    top: 48%;
-  }
-}
-@keyframes animateRow2 {
-  0% {
-    top: 0%;
-  }
-  50% {
-    top: 33%;
-  }
-  75% {
-    top: 25%;
-  }
-  100% {
-    top: 33%;
-  }
-}
-@keyframes animateRow1 {
-  0% {
-    top: 0%;
-  }
-  50% {
-    top: 18%;
-  }
-  75% {
-    top: 12%;
-  }
-  100% {
-    top: 18%;
-  }
-}
-@keyframes animateRow1 {
-  0% {
-    top: 0%;
-  }
-  50% {
-    top: 2.9%;
-  }
-  75% {
-    top: -2%;
-  }
-  100% {
-    top: 2.9%;
   }
 }

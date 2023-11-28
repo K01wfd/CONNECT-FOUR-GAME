@@ -20,7 +20,12 @@ export const checkWinner = (board) => {
       ) {
         return {
           color: board[col][row],
-          indexes: [{ col: col, rows: [row, row + 1, row + 2, row + 3] }],
+          indexes: [
+            { col: col, row: row },
+            { col: col, row: row + 1 },
+            { col: col, row: row + 2 },
+            { col: col, row: row + 3 },
+          ],
         };
       }
     }
@@ -36,7 +41,12 @@ export const checkWinner = (board) => {
       ) {
         return {
           color: board[col][row],
-          indexes: [{ row: row, cols: [col, col + 1, col + 2, col + 3] }],
+          indexes: [
+            { col: col, row: row },
+            { col: col + 1, row: row },
+            { col: col + 2, row: row },
+            { col: col + 3, row: row },
+          ],
         };
       }
     }

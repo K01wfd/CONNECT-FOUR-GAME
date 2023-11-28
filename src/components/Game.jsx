@@ -20,10 +20,15 @@ function Game() {
   const [board, setBoard] = useState(boardShape);
   const [currentPlayer, setCurrentPlayer] = useState(player);
   const [score, setScore] = useState({ player1Score: 0, player2Score: 0 });
-
+  let winningCounters = [];
   let boardColumn = null;
   // check if there is pattern winner
   let patternWinner = checkWinner(board);
+
+  // if winner set the winning counters
+  if (patternWinner) {
+    winningCounters = patternWinner.indexes;
+  }
   // handle counter drop when column click
   const handleCounter = (e) => {
     if (!patternWinner && currentPlayer.timeLeft !== 0) {
@@ -64,7 +69,6 @@ function Game() {
       }
     }
   };
-
   // rematch
   const rematch = () => {
     setBoard(boardShape);
@@ -78,7 +82,7 @@ function Game() {
     const timer = countDown(currentPlayer, setCurrentPlayer);
     // set winner score if timeout
     setTimeOutWinnerScore(currentPlayer, setScore);
-    // if winner clear timeInterval and set score
+    // if patternWinner clear timeInterval and set score
     if (patternWinner) {
       clearInterval(timer);
       setScore((prevScore) => {
@@ -121,6 +125,7 @@ function Game() {
                     col={colIndex}
                     row={rowIndex}
                     color={cel}
+                    winningCounters={winningCounters}
                   />
                 )
             )
