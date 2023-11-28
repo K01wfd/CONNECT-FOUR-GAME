@@ -72,6 +72,27 @@ export const checkWinner = (board) => {
       }
     }
   }
+  // check digonaly top-right to bottom-left
+  for (let col = 6; col >= 3; col--) {
+    for (let row = 0; row < 3; row++) {
+      if (
+        board[col][row] &&
+        board[col][row] === board[col - 1][row + 1] &&
+        board[col][row] === board[col - 2][row + 2] &&
+        board[col][row] === board[col - 3][row + 3]
+      ) {
+        return {
+          color: board[col][row],
+          indexes: [
+            { col: col, row: row },
+            { col: col - 1, row: row + 1 },
+            { col: col - 2, row: row + 2 },
+            { col: col - 3, row: row + 3 },
+          ],
+        };
+      }
+    }
+  }
 };
 export const moveMarker = (e, timeLeft, winner) => {
   if (timeLeft !== 0 && !winner) {

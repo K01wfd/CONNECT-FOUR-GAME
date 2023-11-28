@@ -75,6 +75,7 @@ function Game() {
     setCurrentPlayer(player);
     patternWinner = undefined;
   };
+  console.log(board);
   // set footer bg
   let footerBg = setFooterBg(patternWinner, currentPlayer);
   useEffect(() => {
