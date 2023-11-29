@@ -15,7 +15,6 @@ import Timer from './game/Timer';
 import Marker from './game/Marker';
 import Counter from './game/Counter';
 import Winner from './game/Winner';
-import TimeOut from './game/TimeOut';
 function Game() {
   const [board, setBoard] = useState(boardShape);
   const [currentPlayer, setCurrentPlayer] = useState(player);
@@ -171,12 +170,12 @@ function Game() {
           <Timer currentPlayer={currentPlayer} />
         ) : null}
         {/* WINNER */}
-        {patternWinner && currentPlayer.timeLeft !== 0 ? (
-          <Winner color={patternWinner.color} rematch={() => rematch()} />
-        ) : null}
-        {/* TIMEOUT */}
-        {currentPlayer.timeLeft === 0 && !patternWinner ? (
-          <TimeOut currentPlayer={currentPlayer} rematch={() => rematch()} />
+        {patternWinner || currentPlayer.timeLeft === 0 ? (
+          <Winner
+            color={patternWinner?.color}
+            rematch={() => rematch()}
+            currentPlayer={currentPlayer}
+          />
         ) : null}
         {/* PLAYER 2 */}
         <Player2 score={score.player2Score} />
