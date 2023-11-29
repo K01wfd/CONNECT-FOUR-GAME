@@ -61,7 +61,9 @@ function Game({ onQuitGame }) {
   };
   // handle game resume
   const handleContinue = () => {
-    timer = countDown(currentPlayer, setCurrentPlayer);
+    if (!patternWinner) {
+      timer = countDown(currentPlayer, setCurrentPlayer);
+    }
   };
   // set footer bg
   let footerBg = setFooterBg(patternWinner, currentPlayer);
