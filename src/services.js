@@ -47,3 +47,4 @@ export const player = {
   activePlayer: 'red',
   timeLeft: 10,
 };
+export const scoreShape = { player1Score: 0, player2Score: 0 };

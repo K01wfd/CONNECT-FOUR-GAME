@@ -1,24 +1,30 @@
 import { useEffect, useState } from 'react';
-import { boardShape, images, player, whichColumn } from '../services';
+import {
+  boardShape,
+  images,
+  player,
+  scoreShape,
+  whichColumn,
+} from '../../services';
 import {
   countDown,
   moveMarker,
   checkWinner,
   setTimeOutWinnerScore,
   setFooterBg,
-} from '../utils';
-import styles from '../styles/game.module.css';
-import InGameMenu from './game/InGameMenu';
-import Player1 from './game/Player1';
-import Player2 from './game/Player2';
-import Timer from './game/Timer';
-import Marker from './game/Marker';
-import Counter from './game/Counter';
-import Winner from './game/Winner';
+} from '../../utils';
+import styles from '../../styles/game.module.css';
+import InGameMenu from './InGameMenu';
+import Player1 from './Player1';
+import Player2 from './Player2';
+import Timer from './Timer';
+import Marker from './Marker';
+import Counter from './Counter';
+import Winner from './Winner';
 function Game() {
   const [board, setBoard] = useState(boardShape);
   const [currentPlayer, setCurrentPlayer] = useState(player);
-  const [score, setScore] = useState({ player1Score: 0, player2Score: 0 });
+  const [score, setScore] = useState(scoreShape);
   let winningCounters = [];
   let boardColumn = null;
 
@@ -42,6 +48,11 @@ function Game() {
     });
   };
 
+  const handleRestart = () => {
+    setBoard(boardShape);
+    setCurrentPlayer(player);
+    setScore(scoreShape);
+  };
   // set footer bg
   let footerBg = setFooterBg(patternWinner, currentPlayer);
   // handle counter drop when column click
@@ -106,7 +117,7 @@ function Game() {
 
   return (
     <>
-      <InGameMenu />
+      <InGameMenu onRestart={handleRestart} />
       <main className={`${styles.gameContainer} container grid`}>
         {/* PLAYER 1 */}
         <Player1 score={score.player1Score} />
