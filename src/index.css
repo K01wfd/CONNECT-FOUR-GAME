@@ -55,7 +55,7 @@ picture {
   max-width: 100%;
 }
 .container {
-  max-width: 1440px;
+  max-width: 1100px;
   margin-inline: auto;
 }
 .container-game {
@@ -94,6 +94,9 @@ picture {
 }
 .uppercase {
   text-transform: uppercase;
+}
+.text-center {
+  text-align: center !important;
 }
 .text-black {
   color: var(--black);
@@ -170,10 +173,11 @@ picture {
   padding: 2rem;
   box-shadow: 0px 10px 0px 0px #000;
   width: 100%;
-  display: inline-flex;
+  display: var(--btn-display, inline-flex);
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  text-align: center;
 }
 .btn-icons {
   padding: 1rem 2rem;

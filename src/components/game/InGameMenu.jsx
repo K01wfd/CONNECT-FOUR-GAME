@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '../../assets/images/logo.svg';
 import styles from '../../styles/game/inGameMenu.module.css';
 
-function InGameMenu({ onRestart }) {
+function InGameMenu({ onRestart, onQuitGame, pauseGame, continueGame }) {
   const [popup, setPopup] = useState({
     confirmPopup: false,
     inGameMenuPopup: false,
@@ -20,20 +20,31 @@ function InGameMenu({ onRestart }) {
   };
   const restart = () => {
     setPopup((prev) => {
-      return { ...prev, confirmPopup: false };
+      return { ...prev, confirmPopup: false, inGameMenuPopup: false };
     });
   };
   return (
     <>
       <header className={`${styles.menuHeader} container-game`}>
         <nav className='flex'>
-          <button className='btn-menu'>menu</button>
+          <button
+            className='btn-menu'
+            onClick={() => {
+              pauseGame();
+              setPopup((prev) => {
+                return { ...prev, inGameMenuPopup: true };
+              });
+            }}
+          >
+            menu
+          </button>
           <img src={logo} alt='logo' />
           <button className='btn-menu' onClick={onConfirm}>
             restart
           </button>
         </nav>
       </header>
+      {/* restart */}
       {popup.confirmPopup && (
         <aside className={styles.confirmation}>
           <div className={`${styles.confirmationContent} bg-white`}>
@@ -50,6 +61,40 @@ function InGameMenu({ onRestart }) {
                 }}
               >
                 Yes
+              </button>
+            </div>
+          </div>
+        </aside>
+      )}
+      {/* inGameMenu */}
+      {popup.inGameMenuPopup && (
+        <aside className={styles.inGamemenuPopup}>
+          <div className={`${styles.inGameMenuPopupContent} flow`}>
+            <h2 className='fs-h2 uppercase text-white'>Pause</h2>
+            <div className={`${styles.inGameMenuPopupBtns} flow-medium`}>
+              <button
+                className='btn btn--white text-center'
+                onClick={() => {
+                  continueGame();
+                  restart();
+                }}
+              >
+                CONTINUE GAME
+              </button>
+              <button
+                className='btn btn--white text-center'
+                onClick={() => {
+                  onRestart();
+                  restart();
+                }}
+              >
+                RESTART
+              </button>
+              <button
+                className='btn btn--red text-center'
+                onClick={() => onQuitGame()}
+              >
+                QUIT GAME
               </button>
             </div>
           </div>

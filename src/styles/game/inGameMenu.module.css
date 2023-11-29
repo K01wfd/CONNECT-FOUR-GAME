@@ -18,10 +18,11 @@
   place-content: center;
   z-index: 10000;
   background: rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
 .confirmationContent {
-  max-width: 400px;
+  max-width: 350px;
   padding: 2rem 3rem 4rem;
   height: 200px;
   display: flex;
@@ -30,10 +31,37 @@
   border-radius: 20px;
   border: 3px solid var(--Black, #000);
   box-shadow: 0px 10px 0px 0px #000;
+  margin-inline: auto;
 }
 .confirmationBtns {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+}
+/* In game menu popup */
+.inGamemenuPopup {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-content: center;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.5);
+}
+.inGameMenuPopupContent {
+  max-width: 350px;
+  padding: 5rem 3rem 4rem;
+  border-radius: 40px;
+  border: 3px solid var(--Black, #000);
+  background: var(--Purple, #7945ff);
+  box-shadow: 0px 10px 0px 0px #000;
+  margin-inline: auto;
+}
+.inGameMenuPopupBtns {
+  --btn-display: auto;
 }

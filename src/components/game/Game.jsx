@@ -21,10 +21,11 @@ import Timer from './Timer';
 import Marker from './Marker';
 import Counter from './Counter';
 import Winner from './Winner';
-function Game() {
+function Game({ onQuitGame }) {
   const [board, setBoard] = useState(boardShape);
   const [currentPlayer, setCurrentPlayer] = useState(player);
   const [score, setScore] = useState(scoreShape);
+  let timer;
   let winningCounters = [];
   let boardColumn = null;
 
@@ -48,10 +49,19 @@ function Game() {
     });
   };
 
+  // handle reset button
   const handleRestart = () => {
     setBoard(boardShape);
     setCurrentPlayer(player);
     setScore(scoreShape);
+  };
+  // handle game pause
+  const handlePause = () => {
+    clearInterval(timer);
+  };
+  // handle game resume
+  const handleContinue = () => {
+    timer = countDown(currentPlayer, setCurrentPlayer);
   };
   // set footer bg
   let footerBg = setFooterBg(patternWinner, currentPlayer);
@@ -97,7 +107,7 @@ function Game() {
   };
   useEffect(() => {
     // count down
-    const timer = countDown(currentPlayer, setCurrentPlayer);
+    timer = countDown(currentPlayer, setCurrentPlayer);
     // set winner score if timeout
     setTimeOutWinnerScore(currentPlayer, setScore);
     // if patternWinner clear timeInterval and set score
@@ -117,7 +127,12 @@ function Game() {
 
   return (
     <>
-      <InGameMenu onRestart={handleRestart} />
+      <InGameMenu
+        onRestart={handleRestart}
+        onQuitGame={onQuitGame}
+        pauseGame={handlePause}
+        continueGame={handleContinue}
+      />
       <main className={`${styles.gameContainer} container grid`}>
         {/* PLAYER 1 */}
         <Player1 score={score.player1Score} />
