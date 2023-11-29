@@ -1,3 +1,19 @@
+export const moveMarker = (e, timeLeft, winner) => {
+  if (timeLeft !== 0 && !winner) {
+    let marker = document.getElementById('marker');
+
+    let boardOffset;
+
+    boardOffset = e.target.clientWidth * 0.078;
+    if (
+      e.nativeEvent.offsetX > boardOffset &&
+      e.nativeEvent.offsetX < e.target.clientWidth - boardOffset
+    ) {
+      marker.style.left =
+        e.nativeEvent.offsetX - marker.clientWidth / 2.2 + 'px';
+    }
+  }
+};
 export const countDown = (currentPlayer, setCurrentPlayer) => {
   const timer = setInterval(() => {
     if (currentPlayer.timeLeft > 0) {
@@ -94,36 +110,24 @@ export const checkWinner = (board) => {
     }
   }
 };
-export const moveMarker = (e, timeLeft, winner) => {
-  if (timeLeft !== 0 && !winner) {
-    let marker = document.getElementById('marker');
 
-    let boardOffset;
-
-    boardOffset = e.target.clientWidth * 0.078;
-    if (
-      e.nativeEvent.offsetX > boardOffset &&
-      e.nativeEvent.offsetX < e.target.clientWidth - boardOffset
-    ) {
-      marker.style.left =
-        e.nativeEvent.offsetX - marker.clientWidth / 2.2 + 'px';
-    }
-  }
-};
 export const setTimeOutWinnerScore = (currentPlayer, setScore) => {
-  setScore((prevScore) => {
-    if (currentPlayer.timeLeft === 0 && currentPlayer.activePlayer === 'red') {
-      return { ...prevScore, player2Score: prevScore.player2Score + 1 };
-    }
-    if (
-      currentPlayer.timeLeft === 0 &&
-      currentPlayer.activePlayer === 'yellow'
-    ) {
-      return { ...prevScore, player1Score: prevScore.player1Score + 1 };
-    } else {
-      return { ...prevScore };
-    }
-  });
+  if (currentPlayer.timeLeft === 0 && currentPlayer.activePlayer === 'red') {
+    setScore((prevScore) => {
+      return {
+        ...prevScore,
+        player2Score: prevScore.player2Score + 1,
+      };
+    });
+  }
+  if (currentPlayer.timeLeft === 0 && currentPlayer.activePlayer === 'yellow') {
+    setScore((prevScore) => {
+      return {
+        ...prevScore,
+        player1Score: prevScore.player1Score + 1,
+      };
+    });
+  }
 };
 export const setFooterBg = (patternWinner, currentPlayer) => {
   let footerBg = '';

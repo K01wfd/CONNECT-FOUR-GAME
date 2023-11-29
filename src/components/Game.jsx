@@ -22,13 +22,29 @@ function Game() {
   const [score, setScore] = useState({ player1Score: 0, player2Score: 0 });
   let winningCounters = [];
   let boardColumn = null;
-  // check if there is pattern winner
-  let patternWinner = checkWinner(board);
 
-  // if winner set the winning counters
+  // first check if there is pattern winner
+  let patternWinner = checkWinner(board);
+  // if winner get winning indexes
   if (patternWinner) {
     winningCounters = patternWinner.indexes;
   }
+
+  // rematch
+  const rematch = () => {
+    setBoard(boardShape);
+    patternWinner = undefined;
+    setCurrentPlayer((prevPlayer) => {
+      return {
+        ...prevPlayer,
+        activePlayer: prevPlayer.activePlayer === 'red' ? 'yellow' : 'red',
+        timeLeft: 30,
+      };
+    });
+  };
+
+  // set footer bg
+  let footerBg = setFooterBg(patternWinner, currentPlayer);
   // handle counter drop when column click
   const handleCounter = (e) => {
     if (!patternWinner && currentPlayer.timeLeft !== 0) {
@@ -69,15 +85,6 @@ function Game() {
       }
     }
   };
-  // rematch
-  const rematch = () => {
-    setBoard(boardShape);
-    setCurrentPlayer(player);
-    patternWinner = undefined;
-  };
-  console.log(board);
-  // set footer bg
-  let footerBg = setFooterBg(patternWinner, currentPlayer);
   useEffect(() => {
     // count down
     const timer = countDown(currentPlayer, setCurrentPlayer);

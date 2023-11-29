@@ -1,6 +1,5 @@
 import styles from '../../styles/game/timer.module.css';
 function Winner({ color, rematch }) {
-  console.log(color);
   return (
     <div className={`${styles.winner} bg-white`}>
       {color === 'red' && (
