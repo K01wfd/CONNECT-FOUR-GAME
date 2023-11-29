@@ -26,8 +26,8 @@ export const countDown = (currentPlayer, setCurrentPlayer) => {
 };
 export const checkWinner = (board) => {
   // Check vertically
-  for (let col = 0; col < 6; col++) {
-    for (let row = 0; row < 3; row++) {
+  for (let col = 0; col < 7; col++) {
+    for (let row = 0; row < 4; row++) {
       if (
         board[col][row] &&
         board[col][row] === board[col][row + 1] &&

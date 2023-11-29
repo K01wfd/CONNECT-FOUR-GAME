@@ -115,6 +115,7 @@ function Game({ onQuitGame }) {
     // if patternWinner clear timeInterval and set score
     if (patternWinner) {
       clearInterval(timer);
+      console.log(board);
       setScore((prevScore) => {
         if (patternWinner.color === 'red') {
           return { ...prevScore, player1Score: prevScore.player1Score + 1 };
