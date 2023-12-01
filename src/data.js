@@ -49,7 +49,7 @@ export const player = {
 };
 export const scoreShape = { player1Score: 0, player2Score: 0 };
 export const drawPaterns = {
-  verticalRed: [
+  redPatterns: [
     ['', '', 'yellow', 'red', 'red', 'red'],
     ['', '', 'red', 'yellow', 'red', 'red'],
     ['', '', 'yellow', 'red', 'yellow', 'red'],
@@ -64,7 +64,7 @@ export const drawPaterns = {
     ['red', 'yellow', 'red', 'red', '', ''],
     ['yellow', 'red', 'yellow', 'red', '', ''],
   ],
-  verticalYellow: [
+  yellowPatterns: [
     ['', '', 'red', 'yellow', 'yellow', 'yellow'],
     ['', '', 'yellow', 'red', 'yellow', 'yellow'],
     ['', '', 'red', 'yellow', 'red', 'yellow'],

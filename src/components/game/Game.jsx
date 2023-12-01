@@ -29,45 +29,7 @@ function Game({ onQuitGame }) {
   let winningCounters = [];
   let boardColumn = null;
 
-  // first check if there is pattern winner
-  let patternWinner = checkWinner(board);
-  // if winner get winning indexes
-  if (patternWinner) {
-    winningCounters = patternWinner.indexes;
-  }
-
-  // rematch
-  const rematch = () => {
-    setBoard(boardShape);
-    patternWinner = undefined;
-    setCurrentPlayer((prevPlayer) => {
-      return {
-        ...prevPlayer,
-        activePlayer: prevPlayer.activePlayer === 'red' ? 'yellow' : 'red',
-        timeLeft: 30,
-      };
-    });
-  };
-
-  // handle reset button
-  const handleRestart = () => {
-    setBoard(boardShape);
-    setCurrentPlayer(player);
-    setScore(scoreShape);
-  };
-  // handle game pause
-  const handlePause = () => {
-    clearInterval(timer);
-  };
-  // handle game resume
-  const handleContinue = () => {
-    if (!patternWinner) {
-      timer = countDown(currentPlayer, setCurrentPlayer);
-    }
-  };
-  // set footer bg
-  let footerBg = setFooterBg(patternWinner, currentPlayer);
-  // handle counter drop when column click
+  // 3. handle counter drop when column click
   const handleCounter = (e) => {
     if (!patternWinner && currentPlayer.timeLeft !== 0) {
       let newBoard = [...board.map((inner) => [...inner])];
@@ -107,12 +69,49 @@ function Game({ onQuitGame }) {
       }
     }
   };
+  // 4. check if there is pattern winner
+  let patternWinner = checkWinner(board);
+  // 4.1 if winner get winning indexes
+  if (patternWinner) {
+    winningCounters = patternWinner.indexes;
+  }
+  // 5. rematch
+  const rematch = () => {
+    setBoard(boardShape);
+    patternWinner = undefined;
+    setCurrentPlayer((prevPlayer) => {
+      return {
+        ...prevPlayer,
+        activePlayer: prevPlayer.activePlayer === 'red' ? 'yellow' : 'red',
+        timeLeft: 30,
+      };
+    });
+  };
+  // 6. handle reset button
+  const handleRestart = () => {
+    setBoard(boardShape);
+    setCurrentPlayer(player);
+    setScore(scoreShape);
+  };
+  // 7. handle game pause
+  const handlePause = () => {
+    clearInterval(timer);
+  };
+  // 8. handle game resume
+  const handleContinue = () => {
+    if (!patternWinner) {
+      timer = countDown(currentPlayer, setCurrentPlayer);
+    }
+  };
+  //9. set footer bg
+  let footerBg = setFooterBg(patternWinner, currentPlayer);
+
   useEffect(() => {
-    // count down
+    // 1. count down
     timer = countDown(currentPlayer, setCurrentPlayer);
-    // set winner score if timeout
+    // 2. set winner score if timeout
     setTimeOutWinnerScore(currentPlayer, setScore);
-    // if patternWinner clear timeInterval and set score
+    // 4.2 if patternWinner clear timeInterval and set score
     if (patternWinner) {
       clearInterval(timer);
       setScore((prevScore) => {
