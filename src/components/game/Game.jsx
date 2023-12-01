@@ -4,8 +4,8 @@ import {
   images,
   player,
   scoreShape,
-  whichColumn,
-} from '../../services';
+  columnCords,
+} from '../../data';
 import {
   countDown,
   moveMarker,
@@ -73,10 +73,10 @@ function Game({ onQuitGame }) {
       let newBoard = [...board.map((inner) => [...inner])];
       let mouseLocation = (e.nativeEvent.offsetX / e.target.clientWidth) * 100;
       // get mouse location on which column
-      for (let i = 0; i < whichColumn.length; i++) {
+      for (let i = 0; i < columnCords.length; i++) {
         if (
-          mouseLocation > whichColumn[i].leftOffset &&
-          mouseLocation < whichColumn[i].rightOffset
+          mouseLocation > columnCords[i].leftOffset &&
+          mouseLocation < columnCords[i].rightOffset
         ) {
           boardColumn = i;
           break;
@@ -115,7 +115,6 @@ function Game({ onQuitGame }) {
     // if patternWinner clear timeInterval and set score
     if (patternWinner) {
       clearInterval(timer);
-      console.log(board);
       setScore((prevScore) => {
         if (patternWinner.color === 'red') {
           return { ...prevScore, player1Score: prevScore.player1Score + 1 };

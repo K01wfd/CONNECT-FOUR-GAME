@@ -1,7 +1,7 @@
 import React from 'react';
-import { images } from '../../services';
+import { images, counterLargeCordinations } from '../../data.js';
 import styles from '../../styles/game/counter.module.css';
-import { counterLargeCordinations } from '../../services';
+
 function Counter({ col, row, color, winningCounters }) {
   let className = 'row' + row;
   let winnerCounterFound = false;

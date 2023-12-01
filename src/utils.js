@@ -142,15 +142,3 @@ export const setFooterBg = (patternWinner, currentPlayer) => {
       : footerBg;
   return footerBg;
 };
-// export const predictDraw = (board) => {
-//   let columnDrawChance = 0;
-//   for (let col = 0; col < 7; col++) {
-//     for (let row = 5; row >= 3; row - 2) {
-//       if (board[col][row - 1] && board[col][row] !== board[col][row]) {
-//         columnDrawChance++;
-//       }
-//     }
-//   }
-
-//   console.log(columnDrawChance);
-// };

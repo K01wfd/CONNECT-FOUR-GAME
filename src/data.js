@@ -25,7 +25,7 @@ export const counterLargeCordinations = {
   1: { left: 16.61, top: [2.8, 17.9, 32.9, 48, 63.1, 78.1] },
   0: { left: 2.8, top: [2.8, 17.9, 32.9, 48, 63.1, 78.1] },
 };
-export const whichColumn = [
+export const columnCords = [
   { leftOffset: 3.64, rightOffset: 12.66 },
   { leftOffset: 17.25, rightOffset: 26.74 },
   { leftOffset: 31.17, rightOffset: 40.51 },
@@ -48,3 +48,35 @@ export const player = {
   timeLeft: 30,
 };
 export const scoreShape = { player1Score: 0, player2Score: 0 };
+export const drawPaterns = {
+  verticalRed: [
+    ['', '', 'yellow', 'red', 'red', 'red'],
+    ['', '', 'red', 'yellow', 'red', 'red'],
+    ['', '', 'yellow', 'red', 'yellow', 'red'],
+    ['', '', 'red', 'yellow', 'yellow', 'red'],
+
+    ['', 'yellow', 'red', 'red', 'red', ''],
+    ['', 'red', 'yellow', 'red', 'red', ''],
+    ['', 'yellow', 'red', 'yellow', 'red', ''],
+    ['', 'red', 'yellow', 'yellow', 'red', ''],
+
+    ['yellow', 'red', 'red', 'red', '', ''],
+    ['red', 'yellow', 'red', 'red', '', ''],
+    ['yellow', 'red', 'yellow', 'red', '', ''],
+  ],
+  verticalYellow: [
+    ['', '', 'red', 'yellow', 'yellow', 'yellow'],
+    ['', '', 'yellow', 'red', 'yellow', 'yellow'],
+    ['', '', 'red', 'yellow', 'red', 'yellow'],
+    ['', '', 'yellow', 'red', 'red', 'yellow'],
+
+    ['', 'red', 'yellow', 'yellow', 'yellow', ''],
+    ['', 'yellow', 'red', 'yellow', 'yellow', ''],
+    ['', 'red', 'yellow', 'red', 'yellow', ''],
+    ['', 'yellow', 'red', 'red', 'yellow', ''],
+
+    ['red', 'yellow', 'yellow', 'yellow', '', ''],
+    ['yellow', 'red', 'yellow', 'yellow', '', ''],
+    ['red', 'yellow', 'red', 'yellow', '', ''],
+  ],
+};
