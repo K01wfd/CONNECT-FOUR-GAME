@@ -9,7 +9,10 @@ function Timer({ currentPlayer }) {
       } ${activePlayer === 'red' && 'text-white'}`}
     >
       <p>{activePlayer === 'red' ? "PLAYER'1S TURN" : "PLAYER'2S TURN"}</p>
-      <p className='fs-h1'>{timeLeft}</p>
+      <p className='fs-h1'>
+        {timeLeft}
+        <span className='fs-h4'>s</span>
+      </p>
     </div>
   );
 }

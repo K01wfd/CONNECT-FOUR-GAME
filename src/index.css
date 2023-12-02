@@ -92,6 +92,9 @@ picture {
 .fs-h3 {
   font-size: var(--fs-h3);
 }
+.fs-h4 {
+  font-size: 3.8rem;
+}
 .uppercase {
   text-transform: uppercase;
 }
