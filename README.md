@@ -33,7 +33,16 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./screenshots/empty.png)
+![](./screenshots/running.png)
+![](./screenshots/winner.png)
+![](./screenshots/draw.png)
+![](./screenshots/restart.png)
+![](./screenshots/inGameMenu.png)
+![](./screenshots/gameRules.png)
+![](./screenshots/mainMenu.png)
+![](./screenshots/tablet.png)
+![](./screenshots/mobile.png)
 
 ## My process
 
