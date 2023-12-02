@@ -3,8 +3,8 @@ import MainMenu from './components/MainMenu';
 import GameRules from './components/GameRules';
 import Game from './components/game/Game';
 const INITIAL_GAME = {
-  started: true,
-  twoPlayerMode: true,
+  started: false,
+  twoPlayerMode: false,
   cpuMode: false,
   rules: false,
 };
