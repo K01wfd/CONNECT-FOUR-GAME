@@ -3,8 +3,8 @@ import MainMenu from './components/MainMenu';
 import GameRules from './components/GameRules';
 import Game from './components/game/Game';
 const INITIAL_GAME = {
-  started: false,
-  twoPlayerMode: false,
+  started: true,
+  twoPlayerMode: true,
   cpuMode: false,
   rules: false,
 };
@@ -33,7 +33,9 @@ function App() {
         />
       )}
       {game.rules && <GameRules onRulesClose={toggleRules} />}
-      {game.twoPlayerMode && <Game onQuitGame={handleGameQuit} />}
+      {game.twoPlayerMode && game.started ? (
+        <Game onQuitGame={handleGameQuit} />
+      ) : null}
     </>
   );
 }
