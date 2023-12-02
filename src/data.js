@@ -96,6 +96,7 @@ export const drawPaterns = {
     ['', '', 'yellow', 'yellow', 'red', 'yellow', 'red'],
     ['', '', 'yellow', 'red', 'yellow', 'red', 'yellow'],
     ['', '', 'yellow', 'red', 'red', 'yellow', 'red'],
+    ['', '', 'yellow', 'red', 'yellow', 'yellow', 'red'],
   ],
   redRowPatterns: [
     ['red', 'red', 'red', 'yellow', 'red', '', ''],
@@ -112,5 +113,6 @@ export const drawPaterns = {
     ['', '', 'red', 'yellow', 'red', 'red', 'yellow'],
     ['', '', 'red', 'yellow', 'red', 'yellow', 'red'],
     ['', '', 'red', 'yellow', 'yellow', 'red', 'yellow'],
+    ['', '', 'red', 'yellow', 'red', 'red', 'yellow'],
   ],
 };

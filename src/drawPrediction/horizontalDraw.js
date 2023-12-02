@@ -25,7 +25,6 @@ export const predictHorizontalDraw = (board) => {
         : null;
     });
   }
-  console.log(rowWithDrawFound);
   if (rowWithDrawFound) {
     uniqueDraw = rowWithDrawFound.reduce((acc, value) => {
       if (!acc.includes(value)) {
@@ -34,8 +33,7 @@ export const predictHorizontalDraw = (board) => {
       return acc;
     }, []);
   }
-  drawResult = uniqueDraw.reduce((acc, value) => acc + value, 0);
-  if (drawResult > 20) {
+  if (uniqueDraw.length === 6) {
     return true;
   } else {
     return false;
@@ -50,7 +48,6 @@ let firstPositionCheck = (board, pattern, row, basePosition, index) => {
     board[basePosition + 3][row] === pattern[basePosition + 3] &&
     board[basePosition + 4][row] === pattern[basePosition + 4]
   ) {
-    console.log('first position');
     return true;
   } else {
     return false;
@@ -66,7 +63,6 @@ let secondPositionCheck = (board, pattern, row, basePosition, index) => {
     board[basePosition + 4][row] === pattern[basePosition + 4] &&
     board[basePosition + 5][row] === pattern[basePosition + 5]
   ) {
-    console.log('second position');
     return true;
   } else {
     return false;
@@ -81,7 +77,6 @@ let thirdPositionCheck = (board, pattern, row, basePosition, index) => {
     board[basePosition + 5][row] === pattern[basePosition + 5] &&
     board[basePosition + 6][row] === pattern[basePosition + 6]
   ) {
-    console.log('third position');
     return true;
   } else {
     return false;
