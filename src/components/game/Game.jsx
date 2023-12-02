@@ -13,6 +13,7 @@ import {
   setTimeOutWinnerScore,
   setFooterBg,
 } from '../../utils';
+import { predictHorizontalDraw } from '../../drawPrediction/horizontalDraw';
 import styles from '../../styles/game.module.css';
 import InGameMenu from './InGameMenu';
 import Player1 from './Player1';
@@ -69,6 +70,8 @@ function Game({ onQuitGame }) {
       }
     }
   };
+
+  predictHorizontalDraw(board);
   // 4. check if there is pattern winner
   let patternWinner = checkWinner(board);
   // 4.1 if winner get winning indexes

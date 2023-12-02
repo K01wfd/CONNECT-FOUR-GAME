@@ -1,6 +1,6 @@
 import { drawPaterns } from '../data';
 export const predictVerticalDraw = (board) => {
-  let { redPatterns, yellowPatterns } = drawPaterns;
+  let { redColumnPatterns, yellowColumnPatterns } = drawPaterns;
   let columnWithDrawFound = [];
   let uniqueDraw = [];
   let drawResult = false;
@@ -8,14 +8,14 @@ export const predictVerticalDraw = (board) => {
   for (let column = 0; column < 7; column++) {
     // starting from col 0 row 5, three function to compare starting from base position
     // which is 5 then access other positions by subtracting
-    redPatterns.forEach((pattern, index) => {
+    redColumnPatterns.forEach((pattern, index) => {
       firstPositionCheck(board, pattern, column, 5, index) ||
       secondPositionCheck(board, pattern, column, 5, index) ||
       thirdPositionCheck(board, pattern, column, 5, index)
         ? columnWithDrawFound.push(column)
         : null;
     });
-    yellowPatterns.forEach((pattern, index) => {
+    yellowColumnPatterns.forEach((pattern, index) => {
       firstPositionCheck(board, pattern, column, 5, index) ||
       secondPositionCheck(board, pattern, column, 5, index) ||
       thirdPositionCheck(board, pattern, column, 5, index)
@@ -38,6 +38,9 @@ export const predictVerticalDraw = (board) => {
     return false;
   }
 };
+
+// if the drawPatterns array start vertically by using column patterns
+// starting from last row in the board and going up.
 let firstPositionCheck = (board, pattern, col, basePosition, index) => {
   if (
     index < 4 &&

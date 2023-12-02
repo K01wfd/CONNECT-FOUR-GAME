@@ -49,7 +49,7 @@ export const player = {
 };
 export const scoreShape = { player1Score: 0, player2Score: 0 };
 export const drawPaterns = {
-  redPatterns: [
+  redColumnPatterns: [
     ['', '', 'yellow', 'red', 'red', 'red'],
     ['', '', 'red', 'yellow', 'red', 'red'],
     ['', '', 'yellow', 'red', 'yellow', 'red'],
@@ -63,8 +63,9 @@ export const drawPaterns = {
     ['yellow', 'red', 'red', 'red', '', ''],
     ['red', 'yellow', 'red', 'red', '', ''],
     ['yellow', 'red', 'yellow', 'red', '', ''],
+    ['red', 'yellow', 'yellow', 'red', '', ''],
   ],
-  yellowPatterns: [
+  yellowColumnPatterns: [
     ['', '', 'red', 'yellow', 'yellow', 'yellow'],
     ['', '', 'yellow', 'red', 'yellow', 'yellow'],
     ['', '', 'red', 'yellow', 'red', 'yellow'],
@@ -78,5 +79,38 @@ export const drawPaterns = {
     ['red', 'yellow', 'yellow', 'yellow', '', ''],
     ['yellow', 'red', 'yellow', 'yellow', '', ''],
     ['red', 'yellow', 'red', 'yellow', '', ''],
+    ['yellow', 'red', 'red', 'yellow', '', ''],
+  ],
+  yellowRowPatterns: [
+    ['yellow', 'yellow', 'yellow', 'red', 'yellow', '', ''],
+    ['yellow', 'yellow', 'red', 'yellow', 'red', '', ''],
+    ['yellow', 'red', 'yellow', 'red', 'yellow', '', ''],
+    ['yellow', 'red', 'red', 'yellow', 'red', '', ''],
+
+    ['', 'yellow', 'yellow', 'yellow', 'red', 'yellow', ''],
+    ['', 'yellow', 'yellow', 'red', 'yellow', 'red', ''],
+    ['', 'yellow', 'red', 'yellow', 'red', 'yellow', ''],
+    ['', 'yellow', 'red', 'red', 'yellow', 'red', ''],
+
+    ['', '', 'yellow', 'yellow', 'yellow', 'red', 'yellow'],
+    ['', '', 'yellow', 'yellow', 'red', 'yellow', 'red'],
+    ['', '', 'yellow', 'red', 'yellow', 'red', 'yellow'],
+    ['', '', 'yellow', 'red', 'red', 'yellow', 'red'],
+  ],
+  redRowPatterns: [
+    ['red', 'red', 'red', 'yellow', 'red', '', ''],
+    ['red', 'yellow', 'red', 'red', 'yellow', '', ''],
+    ['red', 'yellow', 'red', 'yellow', 'red', '', ''],
+    ['red', 'yellow', 'yellow', 'red', 'yellow', '', ''],
+
+    ['', 'red', 'red', 'red', 'yellow', 'red', ''],
+    ['', 'red', 'yellow', 'red', 'red', 'yellow', ''],
+    ['', 'red', 'yellow', 'red', 'yellow', 'red', ''],
+    ['', 'red', 'yellow', 'yellow', 'red', 'yellow', ''],
+
+    ['', '', 'red', 'red', 'red', 'yellow', 'red'],
+    ['', '', 'red', 'yellow', 'red', 'red', 'yellow'],
+    ['', '', 'red', 'yellow', 'red', 'yellow', 'red'],
+    ['', '', 'red', 'yellow', 'yellow', 'red', 'yellow'],
   ],
 };
