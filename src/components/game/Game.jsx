@@ -14,7 +14,7 @@ import {
   setFooterBg,
 } from '../../utils';
 import { predictHorizontalDraw } from '../../drawPrediction/horizontalDraw';
-import styles from '../../styles/game.module.css';
+import styles from '../../styles/game/game.module.css';
 import InGameMenu from './InGameMenu';
 import Player1 from './Player1';
 import Player2 from './Player2';
@@ -122,7 +122,6 @@ function Game({ onQuitGame }) {
   //9. set footer bg
   let footerBg = setFooterBg(patternWinner, currentPlayer);
 
-  console.log(draw);
   useEffect(() => {
     // 1. count down
     timer = countDown(currentPlayer, setCurrentPlayer);
